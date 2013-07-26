@@ -33,8 +33,8 @@ if (grep -iq -e "numpy" -e "scipy" requirements.txt) then
   else
     puts-step "Creating/downloading binaries."
     # Download and extract everything into target vendor directory.
-    git clone ${VENDORED_GIT_REPO}
-    tar -xvf ${VENDORED_GIT_NAME}/${VENDORED_BINARIES}.tar.gz
+    git clone ${VENDORED_GIT_REPO} > /dev/null
+    tar -xvf ${VENDORED_GIT_NAME}/${VENDORED_BINARIES}.tar.gz > /dev/null
   fi
   export BLAS=$(pwd)/vendor/lib/atlas-base/atlas/libblas.a
   export LAPACK=$(pwd)/vendor/lib/atlas-base/atlas/liblapack.a
@@ -42,13 +42,11 @@ if (grep -iq -e "numpy" -e "scipy" requirements.txt) then
   export LIBRARY_PATH=$(pwd)/vendor/lib:$(pwd)/vendor/lib/atlas-base:$(pwd)/vendor/lib/atlas-base/atlas
   export LD_LIBRARY_PATH=$(pwd)/vendor/lib:$(pwd)/vendor/lib/atlas-base:$(pwd)/vendor/lib/atlas-base/atlas
 
-  echo `ls`
-  puts-step `ls`
   if [ -d "python/lib/python2.7/site-packages/numpy" ]; then
     puts-step "Using cached numpy."
   else
     puts-step "Creating/downloading numpy bdist."
-    tar -xvf ${VENDORED_GIT_NAME}/${VENDORED_NUMPY}.tar.gz 
+    tar -xvf ${VENDORED_GIT_NAME}/${VENDORED_NUMPY}.tar.gz  > /dev/null
   fi
   
   if [ -d "python/lib/python2.7/site-packages/scipy" ]; then
