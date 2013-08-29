@@ -9,8 +9,7 @@
 #
 # This script is invoked by [`bin/compile`](/).
 
-VENDORED_GIT_NAME="npscipy-binaries"
-VENDORED_GIT_REPO="git://github.com/wyn/${VENDORED_GIT_NAME}.git"
+# VENDORED_S3_REPO should be set in heroku config to bucket that contains binaries.
 # The location of the pre-compiled atlas/lapack/blas/gfortran binaries.
 VENDORED_BINARIES="npscipy"
 # the location of the bdist of numpy
@@ -28,8 +27,8 @@ if (grep -iq -e "numpy" -e "scipy" requirements.txt) then
 
   puts-step "Creating/downloading binaries."
   # Download and extract everything into target vendor directory.
-  git clone ${VENDORED_GIT_REPO} > /dev/null
-  tar -xvf ${VENDORED_GIT_NAME}/${VENDORED_BINARIES}.tar.gz > /dev/null
+  wget ${VENDORED_S3_REPO}/${VENDORED_BINARIES}.tar.gz
+  tar -xvf ${VENDORED_BINARIES}.tar.gz > /dev/null
   
   export BLAS=$(pwd)/vendor/lib/atlas-base/atlas/libblas.a
   export LAPACK=$(pwd)/vendor/lib/atlas-base/atlas/liblapack.a
@@ -41,24 +40,22 @@ if (grep -iq -e "numpy" -e "scipy" requirements.txt) then
     puts-step "Using cached numpy."
   else
     puts-step "Creating/downloading numpy bdist."
-    tar -xvf ${VENDORED_GIT_NAME}/${VENDORED_NUMPY}.tar.gz  > /dev/null
+    wget ${VENDORED_S3_REPO}/${VENDORED_NUMPY}.tar.gz
+    tar -xvf ${VENDORED_NUMPY}.tar.gz  > /dev/null
   fi
   
   if [ -d "python/lib/python2.7/site-packages/scipy" ]; then
     puts-step "Using cached scipy."
   else
     puts-step "Creating/downloading scipy bdist."
-    tar -xvf ${VENDORED_GIT_NAME}/${VENDORED_SCIPY}.tar.gz > /dev/null
+    wget ${VENDORED_S3_REPO}/${VENDORED_SCIPY}.tar.gz
+    tar -xvf ${VENDORED_SCIPY}.tar.gz > /dev/null
   fi
 
   # Move everything from venv directory to python directory
   if [ -d "venv" ]; then
     cp -Rp venv/* python/
     rm -r venv
-  fi
-
-  if [ -d ${VENDORED_GIT_NAME} ]; then
-    rm -rf ${VENDORED_GIT_NAME}
   fi
   cd ..
 fi
