@@ -150,9 +150,13 @@ fi
 set -e
 hash -r
 
+
 # Pylibmc support.
 # See [`bin/steps/pylibmc`](pylibmc.html).
 source $BIN_DIR/steps/pylibmc
+
+
+
 
 # Numpy/scipy support
 source $BIN_DIR/steps/numpy-scipy

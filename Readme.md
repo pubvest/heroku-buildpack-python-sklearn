@@ -6,7 +6,7 @@ for Python apps, powered by [pip](http://www.pip-installer.org/).
 
 Additionally, it adds support for Numpy, Scipy and Scikit-learn.
 
-[![Build Status](https://secure.travis-ci.org/dbrgn/heroku-buildpack-python-sklearn.png?branch=master)](http://travis-ci.org/dbrgn/heroku-buildpack-python-sklearn)
+[![Build Status](https://secure.travis-ci.org/j-e-k/heroku-buildpack-python-sklearn.png?branch=master)](http://travis-ci.org/j-e-k/heroku-buildpack-python-sklearn)
 
 Differences to other forks
 --------------------------
@@ -25,8 +25,12 @@ Setup, Usage
 
 Specify the buildpack as usual. For a new app:
 
-    heroku create --buildpack https://github.com/dbrgn/heroku-buildpack-python-sklearn/
+    heroku create --buildpack https://github.com/j-e-k/heroku-buildpack-python-sklearn
+    heroku config:add LD_LIBRARY_PATH=/app/.heroku/vendor/lib/atlas-base/atlas:/app/.heroku/vendor/lib/atlas-base:/app/.heroku/vendor/lib/
 
 For an existing app:
 
-    heroku config:set BUILDPACK_URL=https://github.com/dbrgn/heroku-buildpack-python-sklearn/
+    heroku config:set BUILDPACK_URL=https://github.com/j-e-k/heroku-buildpack-python-sklearn
+    heroku config:add LD_LIBRARY_PATH=/app/.heroku/vendor/lib/atlas-base/atlas:/app/.heroku/vendor/lib/atlas-base:/app/.heroku/vendor/lib/
+
+To configure see the bin/detect file
