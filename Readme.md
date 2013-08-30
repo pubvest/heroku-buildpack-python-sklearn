@@ -33,4 +33,4 @@ For an existing app:
     heroku config:set BUILDPACK_URL=https://github.com/j-e-k/heroku-buildpack-python-sklearn
     heroku config:add LD_LIBRARY_PATH=/app/.heroku/vendor/lib/atlas-base/atlas:/app/.heroku/vendor/lib/atlas-base:/app/.heroku/vendor/lib/
 
-To configure see the bin/detect file
+To configure see the pre_compile file.

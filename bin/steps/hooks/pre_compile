@@ -1,4 +1,14 @@
 #!/usr/bin/env bash
+# configure
+export VENDORED_MEMCACHED="http://cl.ly/0a191R3K160t1w1P0N25/vendor-libmemcached.tar.gz"
+export VENDORED_GIT_NAME="npscipy-binaries"
+export VENDORED_GIT_REPO="git://github.com/pubvest/${VENDORED_GIT_NAME}.git"
+# The location of the pre-compiled atlas/lapack/blas/gfortran binaries.
+export VENDORED_BINARIES="npscipy"
+export # the location of the bdist of numpy
+export VENDORED_NUMPY="numpy-1.7.0"
+# the location of the bdist of scipy
+export VENDORED_SCIPY="scipy-0.11.0"
 
 if [ -f bin/pre_compile ]; then
     echo "-----> Running pre-compile hook"
