@@ -27,6 +27,8 @@ if (grep -iq -e "numpy" -e "scipy" requirements.txt) then
 
   puts-step "Creating/downloading binaries."
   # Download and extract everything into target vendor directory.
+  echo ${VENDORED_S3_REPO}/${VENDORED_BINARIES}.tar.gz
+  echo ${VENDORED_BINARIES}.tar.gz
   curl ${VENDORED_S3_REPO}/${VENDORED_BINARIES}.tar.gz -o ${VENDORED_BINARIES}.tar.gz
   tar -xvf ${VENDORED_BINARIES}.tar.gz > /dev/null
   
