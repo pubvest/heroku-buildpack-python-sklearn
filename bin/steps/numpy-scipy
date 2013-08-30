@@ -40,7 +40,7 @@ if (grep -iq -e "numpy" -e "scipy" requirements.txt) then
     puts-step "Using cached numpy."
   else
     puts-step "Creating/downloading numpy bdist."
-    curl ${VENDORED_S3_REPO}/${VENDORED_NUMPY}.tar.gz ${VENDORED_NUMPY}.tar.gz
+    curl ${VENDORED_S3_REPO}/${VENDORED_NUMPY}.tar.gz -o ${VENDORED_NUMPY}.tar.gz
     tar -xvf ${VENDORED_NUMPY}.tar.gz  > /dev/null
   fi
   
@@ -48,7 +48,7 @@ if (grep -iq -e "numpy" -e "scipy" requirements.txt) then
     puts-step "Using cached scipy."
   else
     puts-step "Creating/downloading scipy bdist."
-    curl ${VENDORED_S3_REPO}/${VENDORED_SCIPY}.tar.gz ${VENDORED_SCIPY}.tar.gz
+    curl ${VENDORED_S3_REPO}/${VENDORED_SCIPY}.tar.gz -o ${VENDORED_SCIPY}.tar.gz
     tar -xvf ${VENDORED_SCIPY}.tar.gz > /dev/null
   fi
 
