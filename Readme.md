@@ -25,12 +25,12 @@ Setup, Usage
 
 Specify the buildpack as usual. For a new app:
 
-    heroku create --buildpack https://github.com/j-e-k/heroku-buildpack-python-sklearn
+    heroku create --buildpack https://github.com/pubvest/heroku-buildpack-python-sklearn
     heroku config:add LD_LIBRARY_PATH=/app/.heroku/vendor/lib/atlas-base/atlas:/app/.heroku/vendor/lib/atlas-base:/app/.heroku/vendor/lib/
 
 For an existing app:
 
-    heroku config:set BUILDPACK_URL=https://github.com/j-e-k/heroku-buildpack-python-sklearn
+    heroku config:set BUILDPACK_URL=https://github.com/pubvest/heroku-buildpack-python-sklearn
     heroku config:add LD_LIBRARY_PATH=/app/.heroku/vendor/lib/atlas-base/atlas:/app/.heroku/vendor/lib/atlas-base:/app/.heroku/vendor/lib/
 
 To configure see the pre_compile file.
